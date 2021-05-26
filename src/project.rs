@@ -1,6 +1,7 @@
 use std::fs;
 use std::path::Path;
 
+use crate::inbox_file::InboxFile;
 use crate::todo_file;
 use crate::todo_file::TodoFile;
 
@@ -29,6 +30,8 @@ impl Project {
     pub fn create_files(&self) -> Result<(), std::io::Error> {
         let todo_file = TodoFile::default();
         todo_file.write_file(Path::new(&self.path))?;
+        let inbox_file = InboxFile::default();
+        inbox_file.write_file(Path::new(&self.path))?;
         Ok(())
     }
 }

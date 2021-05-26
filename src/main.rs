@@ -7,6 +7,7 @@ extern crate serde_json;
 mod vscode_templates;
 mod project;
 mod todo_file;
+mod inbox_file;
 
 fn main() {
     let matches = App::new("foam-up")
