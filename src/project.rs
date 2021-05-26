@@ -34,6 +34,8 @@ impl Project {
         inbox_file.write_file(Path::new(&self.path))?;
         let extensions_file = vscode_templates::Extension::new();
         extensions_file.write_file(Path::new(&self.path))?;
+        let foam_file = vscode_templates::Foam::new();
+        foam_file.write_file(Path::new(&self.path))?;
         Ok(())
     }
 }
