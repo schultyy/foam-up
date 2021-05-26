@@ -1,6 +1,9 @@
 use std::fs;
 use std::path::Path;
 
+use crate::todo_file;
+use crate::todo_file::TodoFile;
+
 pub struct Project {
     path: String
 }
@@ -20,6 +23,12 @@ impl Project {
 
         let templates_dir = Path::new(&self.path).join(".foam").join(".templates");
         fs::create_dir_all(templates_dir)?;
+        Ok(())
+    }
+
+    pub fn create_files(&self) -> Result<(), std::io::Error> {
+        let todo_file = TodoFile::default();
+        todo_file.write_file(Path::new(&self.path))?;
         Ok(())
     }
 }

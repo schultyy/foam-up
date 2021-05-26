@@ -6,6 +6,7 @@ extern crate serde_json;
 
 mod vscode_templates;
 mod project;
+mod todo_file;
 
 fn main() {
     let matches = App::new("foam-up")
@@ -26,4 +27,5 @@ fn main() {
 
     let project = project::Project::new(path);
     project.create_directories().expect("FATAL: Could not create project directory");
+    project.create_files().expect("FATAL: Could not create project files");
 }
