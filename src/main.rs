@@ -25,5 +25,5 @@ fn main() {
     println!("Value for path: {}", path);
 
     let project = project::Project::new(path);
-    project.create().expect("FATAL: Could not create project directory");
+    project.create_directories().expect("FATAL: Could not create project directory");
 }
