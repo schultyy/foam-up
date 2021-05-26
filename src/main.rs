@@ -1,6 +1,12 @@
 extern crate clap;
 use clap::{Arg, App};
 
+#[macro_use]
+extern crate serde_json;
+
+mod vscode_templates;
+mod project;
+
 fn main() {
     let matches = App::new("foam-up")
                           .version("1.0")
@@ -17,4 +23,7 @@ fn main() {
     // Gets a value for config if supplied by user, or defaults to "default.conf"
     let path = matches.value_of("path").unwrap_or(".");
     println!("Value for path: {}", path);
+
+    let project = project::Project::new(path);
+    project.create().expect("FATAL: Could not create project directory");
 }
