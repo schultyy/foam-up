@@ -11,9 +11,9 @@ impl TodoFile {
         let mut file = File::create(path.join("todo.md"))?;
 
         writeln!(&mut file, "# Todo\n")?;
-        writeln!(&mut file, "\nYou can create todos in Foam.\n\n")?;
-        writeln!(&mut file, "- [x] This is an example of a todo list item that's complete.\n")?;
-        writeln!(&mut file, "- [ ] This one is not complete yet.\n")?;
+        writeln!(&mut file, "You can create todos in Foam.\n")?;
+        writeln!(&mut file, "- [x] This is an example of a todo list item that's complete.")?;
+        writeln!(&mut file, "- [ ] This one is not complete yet.")?;
         Ok(())
     }
 }
