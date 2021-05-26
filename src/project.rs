@@ -2,8 +2,8 @@ use std::fs;
 use std::path::Path;
 
 use crate::inbox_file::InboxFile;
-use crate::todo_file;
 use crate::todo_file::TodoFile;
+use crate::vscode_templates;
 
 pub struct Project {
     path: String
@@ -32,6 +32,8 @@ impl Project {
         todo_file.write_file(Path::new(&self.path))?;
         let inbox_file = InboxFile::default();
         inbox_file.write_file(Path::new(&self.path))?;
+        let extensions_file = vscode_templates::Extension::new();
+        extensions_file.write_file(Path::new(&self.path))?;
         Ok(())
     }
 }
