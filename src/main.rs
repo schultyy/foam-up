@@ -2,7 +2,6 @@ extern crate clap;
 use clap::{Arg, App};
 
 extern crate serde;
-#[macro_use]
 extern crate serde_json;
 
 mod vscode_templates;
