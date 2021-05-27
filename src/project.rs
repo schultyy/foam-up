@@ -22,7 +22,7 @@ impl Project {
         let vscode_dir = Path::new(&self.path).join(".vscode");
         fs::create_dir_all(vscode_dir)?;
 
-        let templates_dir = Path::new(&self.path).join(".foam").join(".templates");
+        let templates_dir = Path::new(&self.path).join(".foam").join("templates");
         fs::create_dir_all(templates_dir)?;
         Ok(())
     }
