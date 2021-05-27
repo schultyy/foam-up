@@ -9,9 +9,11 @@ mod project;
 mod todo_file;
 mod inbox_file;
 
+const VERSION: &'static str = env!("CARGO_PKG_VERSION");
+
 fn main() {
     let matches = App::new("foam-up")
-                          .version("1.0")
+                          .version(VERSION)
                           .author("Jan Schulte<janschulte@fastmail.com>")
                           .about("Generates a new foam project")
                           .arg(Arg::with_name("path")
