@@ -36,6 +36,8 @@ impl Project {
         extensions_file.write_file(Path::new(&self.path))?;
         let foam_file = vscode_templates::Foam::new();
         foam_file.write_file(Path::new(&self.path))?;
+        let settings_file = vscode_templates::Settings::new();
+        settings_file.write_file(Path::new(&self.path))?;
         Ok(())
     }
 }
