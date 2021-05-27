@@ -38,6 +38,8 @@ impl Project {
         foam_file.write_file(Path::new(&self.path))?;
         let settings_file = vscode_templates::Settings::new();
         settings_file.write_file(Path::new(&self.path))?;
+        let blog_post_template = vscode_templates::BlogPostTemplate::default();
+        blog_post_template.write_file(Path::new(&self.path))?;
         Ok(())
     }
 }

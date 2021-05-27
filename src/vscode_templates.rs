@@ -7,6 +7,30 @@ use serde_json::Number;
 use serde_json::Value;
 use std::collections::HashMap;
 
+#[derive(Default)]
+pub struct BlogPostTemplate {
+
+}
+
+impl BlogPostTemplate {
+    pub fn write_file(&self, path: &Path) -> Result<(), std::io::Error> {
+        let mut file = File::create(path.join(".foam").join("templates").join("blogpost.md"))?;
+        writeln!(&mut file, "{}", "---")?;
+        writeln!(&mut file, "{}", "date: ${CURRENT_MONTH}/${CURRENT_DATE}/${CURRENT_YEAR}")?;
+        writeln!(&mut file, "{}", "Categories: null")?;
+        writeln!(&mut file, "{}", "Keywords:")?;
+        writeln!(&mut file, "{}", "Research:")?;
+        writeln!(&mut file, "{}", "seo_title:")?;
+        writeln!(&mut file, "{}", "slug:")?;
+        writeln!(&mut file, "{}", "excerpt: null")?;
+        writeln!(&mut file, "{}", "seo_description: null")?;
+        writeln!(&mut file, "{}", "---")?;
+        writeln!(&mut file, "{}", "# ${TM_FILENAME_BASE}")?;
+
+        Ok(())
+    }
+}
+
 #[derive(Serialize)]
 pub struct Settings {
     pairs: HashMap<String, Value>
