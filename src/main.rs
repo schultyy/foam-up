@@ -1,4 +1,6 @@
 extern crate clap;
+use std::process;
+
 use clap::{Arg, App};
 
 extern crate serde;
@@ -10,6 +12,11 @@ mod todo_file;
 mod inbox_file;
 
 const VERSION: &'static str = env!("CARGO_PKG_VERSION");
+
+fn fatal(message: &str) {
+    println!("{}", message);
+    process::exit(1);
+}
 
 fn main() {
     let matches = App::new("foam-up")
@@ -28,7 +35,15 @@ fn main() {
     let path = matches.value_of("path").expect("Expected a Path");
     println!("Generating project at {}", path);
     let project = project::Project::new(path);
-    project.create_directories().expect("FATAL: Could not create project directory");
-    project.create_files().expect("FATAL: Could not create project files");
-    println!("[x] Project created.");
+
+    match project.is_dirty() {
+        Some(project::Error::DirectoryExists) => {
+            fatal("Cannot create project -- Directory already exists");
+        }
+        None => {
+            project.create_directories().expect("FATAL: Could not create project directory");
+            project.create_files().expect("FATAL: Could not create project files");
+            println!("[x] Project created.");
+        }
+    }
 }

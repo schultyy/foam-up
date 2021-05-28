@@ -5,6 +5,10 @@ use crate::inbox_file::InboxFile;
 use crate::todo_file::TodoFile;
 use crate::vscode_templates;
 
+pub enum Error {
+    DirectoryExists
+}
+
 pub struct Project {
     path: String
 }
@@ -41,5 +45,13 @@ impl Project {
         let blog_post_template = vscode_templates::BlogPostTemplate::default();
         blog_post_template.write_file(Path::new(&self.path))?;
         Ok(())
+    }
+
+    pub fn is_dirty(&self) -> Option<Error> {
+        let local_dir = Path::new(&self.path);
+        if local_dir.exists() {
+            return Some(Error::DirectoryExists);
+        }
+        return None;
     }
 }
