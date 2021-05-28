@@ -1,6 +1,6 @@
 [package]
 name = "foam-up"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["Jan Schulte <jan@work-with-jan.com>"]
 edition = "2018"
 description = "CLI to quickly create new projects for Foam"
