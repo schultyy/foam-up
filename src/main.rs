@@ -21,14 +21,14 @@ fn main() {
                                .long("path")
                                .value_name("PATH")
                                .help("Sets a custom path")
-                               .takes_value(true))
+                               .takes_value(true)
+                               .required(true))
                           .get_matches();
-
-    // Gets a value for config if supplied by user, or defaults to "default.conf"
-    let path = matches.value_of("path").unwrap_or(".");
-    println!("Value for path: {}", path);
-
+    println!("Developing tools for thought.");
+    let path = matches.value_of("path").expect("Expected a Path");
+    println!("Generating project at {}", path);
     let project = project::Project::new(path);
     project.create_directories().expect("FATAL: Could not create project directory");
     project.create_files().expect("FATAL: Could not create project files");
+    println!("[x] Project created.");
 }
